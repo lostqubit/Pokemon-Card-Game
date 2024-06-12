@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.levels {
+	box-sizing: border-box;
+	padding: 20px 50px;
+	margin: 80px auto;
+	max-width: min(500px, 80%);
+	background-color: rgba(0, 0, 0, 0.3);
+	color: white;
+	font-family: "Press Start 2P", sans-serif;
+}
+
+.levels > h2 {
+	font-size: 1.25rem;
+	margin-bottom: 20px;
+	line-height: 30px;
+}
+
+.levels > p {
+	margin-bottom: 10px;
+}
+
+.levels span:hover {
+	border-bottom: 2px solid white;
+	cursor: pointer;
+}
