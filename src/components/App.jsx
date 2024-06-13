@@ -14,6 +14,15 @@ function App() {
 		setScore(0);
 	}, [difficulty]);
 
+	useEffect(() => {
+		if (!localStorage.getItem("bestScore")) localStorage.setItem("bestScore", "0");
+		else {
+			if (bestScore > parseInt(localStorage.getItem("bestScore")))
+				localStorage.setItem("bestScore", `${bestScore}`);
+			else setBestScore(parseInt(localStorage.getItem("bestScore")));
+		}
+	}, [bestScore]);
+
 	return (
 		<>
 			<Header difficulty={difficulty} />
