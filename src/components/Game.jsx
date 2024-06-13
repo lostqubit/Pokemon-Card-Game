@@ -39,6 +39,12 @@ export default function Game({ difficulty, setDifficulty, score, setScore, setBe
 
 	const quit = () => setDifficulty(0);
 
+	const playAgain = () => {
+		setScore(0);
+		setCardStates(Array.from(Array(30), () => 0));
+		setCards([]);
+	};
+
 	return (
 		<>
 			{isGameOver && (
@@ -48,7 +54,7 @@ export default function Game({ difficulty, setDifficulty, score, setScore, setBe
 						<p>You scored {score} points</p>
 						<div>
 							<p>
-								&gt; <span>Play Again</span>
+								&gt; <span onClick={() => playAgain()}>Play Again</span>
 							</p>
 							<p>
 								&gt; <span onClick={() => quit()}>Quit</span>
