@@ -22,8 +22,8 @@
 	align-items: center;
 }
 
-.card {
-	/* height: 118px; */
+.card-active,
+.card-inactive {
 	height: 200px;
 	width: 180px;
 	padding: 20px;
@@ -41,18 +41,60 @@
 	border-radius: 10px;
 }
 
-.card:hover {
+.card-active:hover {
 	background-color: rgba(0, 0, 0, 0.6);
 	transform: perspective(400px) translateZ(50px);
 }
 
-.card > img {
+.card-active > img,
+.card-inactive > img {
 	height: 100%;
 }
 
 @media (max-width: 500px) {
-	.card {
+	.card-active,
+	.card-inactive {
 		height: 118px;
 		width: 100px;
 	}
+}
+
+.overlay {
+	height: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.overlay > div {
+	margin: 0px 10px;
+	border-radius: 10px;
+	background-color: #04052e;
+	padding: 20px;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	color: white;
+	font-family: "Press Start 2P", sans-serif;
+}
+
+.overlay > div > h2 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.overlay > div > div {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.overlay span:hover {
+	cursor: pointer;
+	border-bottom: 2px solid white;
 }
