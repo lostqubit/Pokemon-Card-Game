@@ -24,3 +24,12 @@ header > div {
 	font-size: 1.15rem;
 	font-family: "Roboto", sans-serif;
 }
+
+.in-game{
+    align-items: flex-start;
+    margin-top: -5px;
+}
+
+.in-game>img{
+    max-width: 150px;
+}

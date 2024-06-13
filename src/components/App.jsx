@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Header.jsx";
 import LevelSelection from "./LevelSelection.jsx";
+import Game from "./Game.jsx";
 import Score from "./Score.jsx";
 import "./App.css";
 
@@ -11,8 +12,12 @@ function App() {
 
 	return (
 		<>
-			<Header />
-			<LevelSelection setDifficulty={setDifficulty} setScore={setScore} setBestScore={setBestScore} />
+			<Header difficulty={difficulty} />
+			{difficulty ? (
+				<Game setScore={setScore} setBestScore={setBestScore} />
+			) : (
+				<LevelSelection setDifficulty={setDifficulty} />
+			)}
 			<Score score={score} bestScore={bestScore} difficulty={difficulty} />
 		</>
 	);
