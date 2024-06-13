@@ -14,9 +14,11 @@ function App() {
 		<>
 			<Header difficulty={difficulty} />
 			{difficulty ? (
-				<Game setScore={setScore} setBestScore={setBestScore} />
+				<Game difficulty={difficulty} setScore={setScore} setBestScore={setBestScore} />
 			) : (
-				<LevelSelection setDifficulty={setDifficulty} />
+				<div>
+					<LevelSelection setDifficulty={setDifficulty} />
+				</div>
 			)}
 			<Score score={score} bestScore={bestScore} difficulty={difficulty} />
 		</>
