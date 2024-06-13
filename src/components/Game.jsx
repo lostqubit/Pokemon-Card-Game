@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Game.css";
 
-export default function Game({ difficulty, setScore, setBestScore }) {
-	const [cardStates, setCardStates] = useState(Array.from(Array(50), () => 0));
+export default function Game({ difficulty, score, setScore, setBestScore }) {
+	const [cardStates, setCardStates] = useState(Array.from(Array(30), () => 0));
 	const [cards, setCards] = useState([]);
 
 	const isGameOver = cardStates.includes(2) ? true : false;
@@ -21,8 +21,12 @@ export default function Game({ difficulty, setScore, setBestScore }) {
 			}
 		};
 
-		generateCards();
+		if (!isGameOver) generateCards();
 	}, [cardStates]);
+
+	useEffect(() => {
+		if (isGameOver) setBestScore((prevBest) => (score > prevBest ? score : prevBest));
+	}, [isGameOver]);
 
 	const clickHandler = (id) => {
 		setCardStates((cardStates) => {
@@ -34,20 +38,38 @@ export default function Game({ difficulty, setScore, setBestScore }) {
 	};
 
 	return (
-		<div className="game">
-			<h2>Dont click the same pokemon twice!</h2>
-			<div className="cards">
-				{cards.map((card) => (
-					<Card key={card.id} pokemon={card} clickHandler={clickHandler} />
-				))}
+		<>
+			{isGameOver && (
+				<div className="overlay">
+					<div>
+						<h2>Game over!</h2>
+						<p>You scored {score} points</p>
+						<div>
+							<p>
+								&gt; <span>Play Again</span>
+							</p>
+							<p>
+								&gt; <span>Quit</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			)}
+			<div className="game">
+				<h2>Dont click the same pokemon twice!</h2>
+				<div className="cards">
+					{cards.map((card) => (
+						<Card key={card.id} pokemon={card} clickHandler={clickHandler} isGameOver={isGameOver} />
+					))}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
-function Card({ pokemon, clickHandler }) {
+function Card({ pokemon, clickHandler, isGameOver }) {
 	return (
-		<div className="card" onClick={() => clickHandler(pokemon.id)}>
+		<div className={isGameOver ? "card-inactive" : "card-active"} onClick={() => clickHandler(pokemon.id)}>
 			<img src={pokemon.image} />
 			<p>{pokemon.name}</p>
 		</div>
@@ -55,7 +77,7 @@ function Card({ pokemon, clickHandler }) {
 }
 
 function generateRandom() {
-	return Math.floor(50 * Math.random()) + 1;
+	return Math.floor(30 * Math.random()) + 1;
 }
 
 function drawCards(numCards) {
