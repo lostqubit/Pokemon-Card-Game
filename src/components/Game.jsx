@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Game.css";
 
-export default function Game({ difficulty, score, setScore, setBestScore }) {
+export default function Game({ difficulty, setDifficulty, score, setScore, setBestScore }) {
 	const [cardStates, setCardStates] = useState(Array.from(Array(30), () => 0));
 	const [cards, setCards] = useState([]);
 
@@ -37,6 +37,8 @@ export default function Game({ difficulty, score, setScore, setBestScore }) {
 		if (cardStates[id - 1] === 0) setScore((score) => score + 1);
 	};
 
+	const quit = () => setDifficulty(0);
+
 	return (
 		<>
 			{isGameOver && (
@@ -49,7 +51,7 @@ export default function Game({ difficulty, score, setScore, setBestScore }) {
 								&gt; <span>Play Again</span>
 							</p>
 							<p>
-								&gt; <span>Quit</span>
+								&gt; <span onClick={() => quit()}>Quit</span>
 							</p>
 						</div>
 					</div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header.jsx";
 import LevelSelection from "./LevelSelection.jsx";
 import Game from "./Game.jsx";
@@ -10,11 +10,21 @@ function App() {
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
 
+	useEffect(() => {
+		setScore(0);
+	}, [difficulty]);
+
 	return (
 		<>
 			<Header difficulty={difficulty} />
 			{difficulty ? (
-				<Game difficulty={difficulty} score={score} setScore={setScore} setBestScore={setBestScore} />
+				<Game
+					difficulty={difficulty}
+					setDifficulty={setDifficulty}
+					score={score}
+					setScore={setScore}
+					setBestScore={setBestScore}
+				/>
 			) : (
 				<div>
 					<LevelSelection setDifficulty={setDifficulty} />
