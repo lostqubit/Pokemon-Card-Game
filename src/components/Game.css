@@ -1,0 +1,58 @@
+.game {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	margin-bottom: 20px;
+}
+
+.game > h2 {
+	text-align: center;
+	line-height: 40px;
+	color: white;
+	font-family: "Press Start 2P", sans-serif;
+}
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
+}
+
+.card {
+	/* height: 118px; */
+	height: 200px;
+	width: 180px;
+	padding: 20px;
+	cursor: pointer;
+	font-size: 0.8rem;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.3);
+	font-family: "Press Start 2P", sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	transition: all 0.25s ease-in-out;
+	border-radius: 10px;
+}
+
+.card:hover {
+	background-color: rgba(0, 0, 0, 0.6);
+	transform: perspective(400px) translateZ(50px);
+}
+
+.card > img {
+	height: 100%;
+}
+
+@media (max-width: 500px) {
+	.card {
+		height: 118px;
+		width: 100px;
+	}
+}
