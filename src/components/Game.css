@@ -51,6 +51,11 @@
 	height: 100%;
 }
 
+.card-active > p,
+.card-inactive > p {
+	text-align: center;
+}
+
 @media (max-width: 500px) {
 	.card-active,
 	.card-inactive {
